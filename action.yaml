@@ -1,0 +1,13 @@
+name: "action-br"
+author: "Jean-Denis Boivin @starburst997"
+description: "This GitHub action exposes the br command for use in building/archiving"
+branding:
+  icon: folder-plus
+  color: gray-dark
+runs:
+  using: "docker"
+  image: "Dockerfile"
+inputs:
+  args:
+    description: "See starburst997/action-zipbr README.md for more info"
+    required: false
