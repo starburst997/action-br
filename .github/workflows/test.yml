@@ -1,0 +1,29 @@
+name: Test
+
+on: 
+  #push
+  #pull_request
+  workflow_dispatch: 
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Brotli
+        uses: starburst997/action-br@v1
+
+      - name: Test brotli
+        run: |
+          echo "KDFKJHFDKJAHFKJSDHFKJSHDFKJSDHFKSHDFKSJDFHKSDJFHSKDFJHSKDFHSDKFJHSDFKSDHFKSDJFHSKDFHSDKFJHSDFKSDJHFHJK" > test.txt
+          brotli test.txt
+          mv test.txt test.og.txt
+          brotli -d test.txt.br
+          stat -c %s test.og.txt
+          stat -c %s test.txt
+          stat -c %s test.txt.br
+          echo "Size of brotli: $(stat -c %s test.txt.br)"
+
+      - name: Zip folder
+        run: zip -qq -r ../BubbleTeaAssassin_v${{needs.buildForWindowsPlatform.outputs.version}}.zip *
