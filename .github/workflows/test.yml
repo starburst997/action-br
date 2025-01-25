@@ -24,6 +24,3 @@ jobs:
           stat -c %s test.txt
           stat -c %s test.txt.br
           echo "Size of brotli: $(stat -c %s test.txt.br)"
-
-      - name: Zip folder
-        run: zip -qq -r ../BubbleTeaAssassin_v${{needs.buildForWindowsPlatform.outputs.version}}.zip *
